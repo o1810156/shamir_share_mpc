@@ -179,7 +179,6 @@ fn mul_simulation() {
     // player3_m.recieve_share(&player3_m);
 
     let phs123 = phis(&[player1.id, player2.id, player3.id]);
-    println!("phs123: {:?}", phs123);
 
     player1_m.fold_share(|shares| {
         shares
@@ -235,4 +234,24 @@ fn main() {
     add_simulation();
     println!("Mul simulation");
     mul_simulation();
+
+    /* its result is:
+    Add simulation
+    p1: Player { id: 1, secret: 2, rands: [5.0], shares: {1: 7.0, 2: 7.0}, folded_share: 14 }
+    p2: Player { id: 2, secret: 4, rands: [3.0], shares: {1: 12.0, 2: 10.0}, folded_share: 22 }
+    p3: Player { id: 3, secret: 6, rands: [7.0], shares: {1: 17.0, 2: 13.0}, folded_share: 30 }
+    [p1, p2] s_1 + s_2 = 6
+    [p1, p3] s_1 + s_2 = 6
+    [p2, p3] s_1 + s_2 = 6
+    Mul simulation
+    p1: Player { id: 1, secret: 2, rands: [5.0], shares: {2: 7.0, 1: 7.0}, folded_share: 49 }
+    p2: Player { id: 2, secret: 4, rands: [3.0], shares: {2: 10.0, 1: 12.0}, folded_share: 120 }
+    p3: Player { id: 3, secret: 6, rands: [7.0], shares: {1: 17.0, 2: 13.0}, folded_share: 221 }
+    p1m: Player { id: 1, secret: 49, rands: [13.0], shares: {2: 123.0, 1: 62.0, 3: 222.0}, folded_share: 39 }
+    p2m: Player { id: 2, secret: 120, rands: [3.0], shares: {1: 75.0, 2: 126.0, 3: 223.0}, folded_share: 70 }
+    p3m: Player { id: 3, secret: 221, rands: [1.0], shares: {3: 224.0, 2: 129.0, 1: 88.0}, folded_share: 101 }
+    [p1, p2] s_1 * s_2 = 8
+    [p1, p3] s_1 * s_2 = 8
+    [p2, p3] s_1 * s_2 = 8
+        */
 }
