@@ -335,10 +335,6 @@ fn mul_simulation() {
     let mut player2_m = Player::new(2, player2.folded_share, vec![i2.into()]);
     let mut player3_m = Player::new(3, player3.folded_share, vec![i3.into()]);
 
-    println!("p1m: {:?}", player1_m);
-    println!("p2m: {:?}", player2_m);
-    println!("p3m: {:?}", player3_m);
-
     player1_m.make_poly(2);
     player2_m.make_poly(2);
     player3_m.make_poly(2);
@@ -416,24 +412,42 @@ fn main() {
     add_simulation();
     println!("Mul simulation Z_17");
     mul_simulation();
-
-    /* its result is:
-    Add simulation
-    p1: Player { id: 1, secret: 2, rands: [5.0], shares: {1: 7.0, 2: 7.0}, folded_share: 14 }
-    p2: Player { id: 2, secret: 4, rands: [3.0], shares: {1: 12.0, 2: 10.0}, folded_share: 22 }
-    p3: Player { id: 3, secret: 6, rands: [7.0], shares: {1: 17.0, 2: 13.0}, folded_share: 30 }
-    [p1, p2] s_1 + s_2 = 6
-    [p1, p3] s_1 + s_2 = 6
-    [p2, p3] s_1 + s_2 = 6
-    Mul simulation
-    p1: Player { id: 1, secret: 2, rands: [5.0], shares: {2: 7.0, 1: 7.0}, folded_share: 49 }
-    p2: Player { id: 2, secret: 4, rands: [3.0], shares: {2: 10.0, 1: 12.0}, folded_share: 120 }
-    p3: Player { id: 3, secret: 6, rands: [7.0], shares: {1: 17.0, 2: 13.0}, folded_share: 221 }
-    p1m: Player { id: 1, secret: 49, rands: [13.0], shares: {2: 123.0, 1: 62.0, 3: 222.0}, folded_share: 39 }
-    p2m: Player { id: 2, secret: 120, rands: [3.0], shares: {1: 75.0, 2: 126.0, 3: 223.0}, folded_share: 70 }
-    p3m: Player { id: 3, secret: 221, rands: [1.0], shares: {3: 224.0, 2: 129.0, 1: 88.0}, folded_share: 101 }
-    [p1, p2] s_1 * s_2 = 8
-    [p1, p3] s_1 * s_2 = 8
-    [p2, p3] s_1 * s_2 = 8
-        */
 }
+
+/* its result is:
+Add simulation f64
+p1: Player { id: 1, secret: 2, rands: [5.0], shares: {1: 7.0, 2: 7.0}, folded_share: 14 }
+p2: Player { id: 2, secret: 4, rands: [3.0], shares: {1: 12.0, 2: 10.0}, folded_share: 22 }
+p3: Player { id: 3, secret: 6, rands: [7.0], shares: {1: 17.0, 2: 13.0}, folded_share: 30 }
+[p1, p2] s_1 + s_2 = 6
+[p1, p3] s_1 + s_2 = 6
+[p2, p3] s_1 + s_2 = 6
+Mul simulation f64
+p1: Player { id: 1, secret: 2, rands: [5.0], shares: {1: 7.0, 2: 7.0}, folded_share: 49 }
+p2: Player { id: 2, secret: 4, rands: [3.0], shares: {2: 10.0, 1: 12.0}, folded_share: 120 }
+p3: Player { id: 3, secret: 6, rands: [7.0], shares: {1: 17.0, 2: 13.0}, folded_share: 221 }
+p1m: Player { id: 1, secret: 49, rands: [6.0], shares: {3: 223.0, 2: 126.0, 1: 55.0}, folded_share: 10 }
+p2m: Player { id: 2, secret: 120, rands: [6.0], shares: {2: 132.0, 1: 61.0, 3: 225.0}, folded_share: 12 }
+p3m: Player { id: 3, secret: 221, rands: [2.0], shares: {2: 138.0, 1: 67.0, 3: 227.0}, folded_share: 14 }
+[p1, p2] s_1 * s_2 = 8
+[p1, p3] s_1 * s_2 = 8
+[p2, p3] s_1 * s_2 = 8
+==============================
+Add simulation Z_17
+p1: Player { id: 1, secret: 2, rands: [ModInt { val: 5 }], shares: {1: ModInt { val: 7 }, 2: ModInt { val: 7 }}, folded_share: 14 }
+p2: Player { id: 2, secret: 4, rands: [ModInt { val: 3 }], shares: {2: ModInt { val: 10 }, 1: ModInt { val: 12 }}, folded_share: 5 }
+p3: Player { id: 3, secret: 6, rands: [ModInt { val: 7 }], shares: {2: ModInt { val: 13 }, 1: ModInt { val: 0 }}, folded_share: 13 }
+[p1, p2] s_1 + s_2 = 6
+[p1, p3] s_1 + s_2 = 6
+[p2, p3] s_1 + s_2 = 6
+Mul simulation Z_17
+p1: Player { id: 1, secret: 2, rands: [ModInt { val: 5 }], shares: {1: ModInt { val: 7 }, 2: ModInt { val: 7 }}, folded_share: 15 }
+p2: Player { id: 2, secret: 4, rands: [ModInt { val: 3 }], shares: {2: ModInt { val: 10 }, 1: ModInt { val: 12 }}, folded_share: 1 }
+p3: Player { id: 3, secret: 6, rands: [ModInt { val: 7 }], shares: {2: ModInt { val: 13 }, 1: ModInt { val: 0 }}, folded_share: 0 }
+p1m: Player { id: 1, secret: 15, rands: [ModInt { val: 7 }], shares: {2: ModInt { val: 10 }, 3: ModInt { val: 11 }, 1: ModInt { val: 5 }}, folded_share: 13 }
+p2m: Player { id: 2, secret: 1, rands: [ModInt { val: 9 }], shares: {2: ModInt { val: 2 }, 1: ModInt { val: 12 }, 3: ModInt { val: 5 }}, folded_share: 1 }
+p3m: Player { id: 3, secret: 0, rands: [ModInt { val: 11 }], shares: {1: ModInt { val: 2 }, 3: ModInt { val: 16 }, 2: ModInt { val: 11 }}, folded_share: 6 }
+[p1, p2] s_1 * s_2 = 8
+[p1, p3] s_1 * s_2 = 8
+[p2, p3] s_1 * s_2 = 8
+*/
